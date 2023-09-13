@@ -8,7 +8,7 @@ import image from "../assets/image.jpeg";
 export default function FeaturedMovies() {
   return (
     <div className="px-8 md:px-16 lg:px-24 py-20">
-      <div className="flex justify-between">
+      <div className="flex justify-between my-auto">
         <h4 className="font-semibold text-lg md:text-3xl">Featured Movies</h4>
         <Link className="flex text-[#BE123C]">
           <p className="font-normal md:font-semibold text-sm md:text-lg my-auto">
