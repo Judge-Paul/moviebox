@@ -17,7 +17,7 @@ export default function FeaturedMovies() {
           <AiOutlineRight className="my-auto" />
         </Link>
       </div>
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 lg:space-x-8">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
         <MovieCard
           id={1}
           image={image}
