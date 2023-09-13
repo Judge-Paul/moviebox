@@ -1,4 +1,5 @@
-import React, { useState, useRef } from "react";
+import React, { useState } from "react";
+import { useLocation } from "react-router-dom";
 import { FaSearch } from "react-icons/fa";
 import { IoClose } from "react-icons/io5";
 import logo from "../assets/logo.svg";
@@ -6,10 +7,14 @@ import menu from "../assets/menu.svg";
 import search from "../assets/search.svg";
 
 export default function Navbar() {
+  const location = useLocation();
   const [isFocused, setIsFocused] = useState(false);
   return (
     <>
-      <nav className="fixed bg-black/50 backdrop-blur-sm w-full px-8 md:px-16 lg:px-24 py-4 flex space-x-3 justify-between">
+      <nav
+        className={`fixed bg-black/50 backdrop-blur-sm w-full px-8 md:px-16 lg:px-24 py-4 flex space-x-3 justify-between 
+        ${location.pathname.includes("/movie") && "md:hidden"}`}
+      >
         <img src={logo} alt="Logo Icon" />
         <img
           src={search}
@@ -17,10 +22,15 @@ export default function Navbar() {
           className="cursor-pointer w-[70%] max-w-max hidden md:block"
           onClick={() => setIsFocused(true)}
         />
-        <div className="flex lg:space-x-3">
+        <div className="flex space-x-5">
           <h4 className="w-full my-auto font-semibold text-lg text-white hidden lg:block">
             Sign In
           </h4>
+          <FaSearch
+            onClick={() => setIsFocused(true)}
+            size="35px"
+            className="md:hidden text-white my-auto cursor-pointer"
+          />
           <img src={menu} alt="Menu Icon" />
         </div>
       </nav>

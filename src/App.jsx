@@ -18,6 +18,7 @@ const HomeWrapper = () => {
 const MovieWrapper = () => {
   return (
     <>
+      <Navbar />
       <Movie />
       <Footer />
     </>
@@ -29,7 +30,7 @@ export default function App() {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<HomeWrapper />} />
-        <Route path="/movie" element={<Movie />} />
+        <Route path="/movie" element={<MovieWrapper />} />
       </Routes>
     </BrowserRouter>
   );
