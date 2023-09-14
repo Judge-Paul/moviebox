@@ -111,7 +111,7 @@ export default function Movie() {
               <h4 className="bg-red-500 hover:bg-red-600 rounded-md w-full py-3 text-center text-white font-semibold cursor-pointer">
                 See Showtimes
               </h4>
-              <h4 className="mt-3 bg-red-200 hover:bg-red-300 border border-red-500 rounded-md w-full py-3 text-center text-gray-800 font-semibold cursor-pointer">
+              <h4 className="mt-3 bg-red-100 hover:bg-red-200 border border-red-500 rounded-md w-full py-3 text-center text-gray-800 font-semibold cursor-pointer">
                 More watch options
               </h4>
             </div>

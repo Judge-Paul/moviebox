@@ -1,11 +1,11 @@
 import React from "react";
-// import data from "../data";
+import { data } from "../data";
 import { AiOutlineRight } from "react-icons/ai";
 import { Link } from "react-router-dom";
 import MovieCard from "./MovieCard";
-import image from "../assets/image.jpeg";
 
 export default function FeaturedMovies() {
+  const moviesData = data.results.slice(0, 10);
   return (
     <div className="px-8 md:px-16 lg:px-24 py-20">
       <div className="flex justify-between my-auto">
@@ -18,78 +18,9 @@ export default function FeaturedMovies() {
         </Link>
       </div>
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
-        <MovieCard
-          id={1}
-          image={image}
-          release="Nigeria 2006 - Current"
-          title="Judge-Paul"
-          rating="72.0"
-          tomatometer={85}
-          genre="Melanin Pumping Black Skin Boy"
-        />
-        <MovieCard
-          id={1}
-          image={image}
-          release="Nigeria 2006 - Current"
-          title="Judge-Paul"
-          rating="72.0"
-          tomatometer={85}
-          genre="Melanin Pumping Black Skin Boy"
-        />
-        <MovieCard
-          id={1}
-          image={image}
-          release="Nigeria 2006 - Current"
-          title="Judge-Paul"
-          rating="72.0"
-          tomatometer={85}
-          genre="Melanin Pumping Black Skin Boy"
-        />
-        <MovieCard
-          id={1}
-          image={image}
-          release="Nigeria 2006 - Current"
-          title="Judge-Paul"
-          rating="72.0"
-          tomatometer={85}
-          genre="Melanin Pumping Black Skin Boy"
-        />
-        <MovieCard
-          id={1}
-          image={image}
-          release="Nigeria 2006 - Current"
-          title="Judge-Paul"
-          rating="72.0"
-          tomatometer={85}
-          genre="Melanin Pumping Black Skin Boy"
-        />
-        <MovieCard
-          id={1}
-          image={image}
-          release="Nigeria 2006 - Current"
-          title="Judge-Paul"
-          rating="72.0"
-          tomatometer={85}
-          genre="Melanin Pumping Black Skin Boy"
-        />
-        <MovieCard
-          id={1}
-          image={image}
-          release="Nigeria 2006 - Current"
-          title="Judge-Paul"
-          rating="72.0"
-          tomatometer={85}
-          genre="Melanin Pumping Black Skin Boy"
-        />
-        <MovieCard
-          id={1}
-          image={image}
-          release="Nigeria 2006 - Current"
-          title="Judge-Paul"
-          rating="72.0"
-          tomatometer={85}
-          genre="Melanin Pumping Black Skin Boy"
-        />
+        {moviesData.map((movie) => {
+          return <MovieCard key={movie.id} {...movie} />;
+        })}
       </div>
     </div>
   );
