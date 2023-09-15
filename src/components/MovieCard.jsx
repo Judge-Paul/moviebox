@@ -12,7 +12,7 @@ export default function MovieCard({
 }) {
   const [isLike, setIsLiked] = useState(false);
   return (
-    <Link to={`/movie/${id}`} className="mt-10 hover:bg-gray-50 mx-3">
+    <Link to={`/movies/${id}`} className="mt-10 hover:bg-gray-50 mx-3">
       <img
         src={`http://images.tmdb.org/t/p/original${poster_path}`}
         alt={title}

@@ -2,14 +2,38 @@ import React, { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import bg from "../assets/bg.svg";
 import axios from "axios";
+import Skeleton from "react-loading-skeleton";
+import "react-loading-skeleton/dist/skeleton.css";
+
+const { VITE_TMDB_API_KEY } = import.meta.env;
 
 export default function Movie() {
-  //   const [movie, setMovie] = useState(null);
-  //   const { id } = useParams();
+  const [movie, setMovie] = useState({});
+  const { id } = useParams();
 
-  //   useEffect(() => {
-  //     axios.get(`https://api.themoviedb.org/3/movie/${id}`);
-  //   }, []);
+  function formatTime(minutes) {
+    if (minutes < 0 || !Number.isInteger(minutes)) {
+      throw new Error("Input minutes must be a non-negative integer");
+    }
+
+    const hours = Math.floor(minutes / 60);
+    const remainingMinutes = minutes % 60;
+
+    if (hours === 0) {
+      return `${remainingMinutes}m`;
+    } else if (hours === 1) {
+      return `1h ${remainingMinutes}m`;
+    } else {
+      return `${hours}h ${remainingMinutes}m`;
+    }
+  }
+
+  useEffect(() => {
+    const response = axios.get(
+      `https://api.themoviedb.org/3/movie/${id}?api_key=${VITE_TMDB_API_KEY}`,
+    );
+    setMovie(response);
+  }, []);
   return (
     <main className="flex">
       <div className="hidden md:block fixed h-screen w-56 py-12 border border-gray-400 rounded-r-[50px]">
@@ -66,10 +90,16 @@ export default function Movie() {
           <div className="md:px-4 xl:col-span-2">
             <div className="mt-6 lg:flex text-gray-700 justify-between">
               <div className="sm:flex w-[85%] xl:mr-7 justify-between md:justify-items-start">
-                <h4 className="text-lg font-medium">Top Gun: Maverick</h4>
-                <p className="text-lg font-medium">2022</p>
+                <h4 className="text-lg font-medium">
+                  {movie?.title || <Skeleton />}
+                </h4>
+                <p className="text-lg font-medium">
+                  {movie?.release_date.slice(0, 4) || <Skeleton />}
+                </p>
                 <p className="text-lg font-medium">PG-13</p>
-                <p className="text-lg font-medium">2h 10m</p>
+                <p className="text-lg font-medium">
+                  {formatTime(movie?.runtime)}
+                </p>
               </div>
               <div className="lg:w-1/2 xl:w-1/3 flex lg:justify-between">
                 <span className="text-red-500 hover:bg-red-100 mr-2 px-4 py-1.5 border border-red-500 rounded-full text-xs font-semibold cursor-pointer">
