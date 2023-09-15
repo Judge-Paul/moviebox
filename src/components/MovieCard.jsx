@@ -16,7 +16,7 @@ export default function MovieCard({
       <img
         src={`http://images.tmdb.org/t/p/original${poster_path}`}
         alt={title}
-        className="w-full h-[22rem] bg-gray-400 flex justify-center items-center"
+        className="w-full h-[22rem] bg-gray-200 flex justify-center items-center"
       />
       <div className="mt-3">
         <p className="text-gray-500 text-sm">{release_date}</p>

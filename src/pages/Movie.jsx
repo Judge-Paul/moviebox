@@ -1,8 +1,15 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { Link, useParams } from "react-router-dom";
 import bg from "../assets/bg.svg";
+import axios from "axios";
 
 export default function Movie() {
+  //   const [movie, setMovie] = useState(null);
+  //   const { id } = useParams();
+
+  //   useEffect(() => {
+  //     axios.get(`https://api.themoviedb.org/3/movie/${id}`);
+  //   }, []);
   return (
     <main className="flex">
       <div className="hidden md:block fixed h-screen w-56 py-12 border border-gray-400 rounded-r-[50px]">

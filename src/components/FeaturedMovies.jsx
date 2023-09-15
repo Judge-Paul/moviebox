@@ -7,7 +7,7 @@ import MovieCard from "./MovieCard";
 export default function FeaturedMovies() {
   const moviesData = data.results.slice(0, 10);
   return (
-    <div className="px-8 md:px-16 lg:px-24 py-20">
+    <section className="px-8 md:px-16 lg:px-24 py-20">
       <div className="flex justify-between my-auto">
         <h4 className="font-semibold text-lg md:text-3xl">Featured Movies</h4>
         <Link className="flex text-[#BE123C]">
@@ -22,6 +22,6 @@ export default function FeaturedMovies() {
           return <MovieCard key={movie.id} {...movie} />;
         })}
       </div>
-    </div>
+    </section>
   );
 }

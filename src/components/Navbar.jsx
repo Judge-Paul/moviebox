@@ -1,14 +1,62 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import axios from "axios";
 import { useLocation } from "react-router-dom";
 import { FaSearch } from "react-icons/fa";
+import { ImSpinner8 } from "react-icons/im";
 import { IoClose } from "react-icons/io5";
 import logo from "../assets/logo.svg";
 import menu from "../assets/menu.svg";
 import search from "../assets/search.svg";
+import SearchCard from "./SearchCard";
+
+const { VITE_TMDB_API_KEY } = import.meta.env;
+const TMDB_BASE_URL = "https://api.themoviedb.org/3";
 
 export default function Navbar() {
   const location = useLocation();
+  const [isLoading, setIsLoading] = useState(false);
   const [isFocused, setIsFocused] = useState(false);
+  const [searchQuery, setSearchQuery] = useState("");
+  const [results, setResults] = useState(null);
+
+  const handleChange = (event) => {
+    const { value } = event.target;
+    setSearchQuery(value);
+
+    if (!value) {
+      setResults(null);
+    }
+  };
+
+  const closeModal = () => {
+    setIsFocused(false);
+    setSearchQuery("");
+    setResults(null);
+  };
+
+  useEffect(() => {
+    const search = async () => {
+      if (searchQuery !== "") {
+        setIsLoading(true);
+        try {
+          const response = await axios.get(`${TMDB_BASE_URL}/search/movie`, {
+            params: {
+              api_key: VITE_TMDB_API_KEY,
+              query: searchQuery,
+            },
+          });
+          setResults(response.data.results.slice(0, 6));
+        } catch (error) {
+          console.error(error);
+        } finally {
+          setIsLoading(false);
+        }
+      }
+    };
+    search();
+  }, [searchQuery]);
+
+  console.log(results);
   return (
     <>
       <nav
@@ -36,34 +84,50 @@ export default function Navbar() {
       </nav>
       {isFocused && (
         <div className="top-0 h-screen w-screen px-4 fixed pt-8 md:pt-16 bg-white/50 backdrop-blur-sm text-black z-[9999] flex justify-center">
-          <div className="bg-blue-300/75 rounded-xl px-2 md:px-3 md:pr-6 pt-1 md:pt-4 h-max">
+          <div className="bg-blue-500/90 rounded-xl px-2 md:px-3 md:pr-6 pt-1 md:pt-4 h-max w-[25rem] md:w-[40rem] pb-8">
             <div className="flex">
               <div className="relative mr-5">
-                <button className="absolute left-0 top-0 mt-3 ml-4 text-[#3a4688]">
-                  <FaSearch />
+                <button
+                  className={`absolute left-0 top-0 mt-3 ml-4 text-[#3a4688] ${
+                    isLoading && "animate-spin"
+                  }`}
+                >
+                  {isLoading ? <ImSpinner8 /> : <FaSearch />}
                 </button>
                 <input
                   type="text"
                   className="bg-transparent focus:outline-none text-white placeholder-white rounded-full w-full md:w-[28rem] pl-10 pr-3.5 py-2"
                   placeholder="What do you want to watch?"
+                  onChange={handleChange}
+                  value={searchQuery}
                 />
               </div>
               <button
-                onClick={() => setIsFocused(false)}
-                className="hidden md:block text-white bg-[#3a4688] h-max px-8 py-2 rounded-full font-bold"
+                onClick={closeModal}
+                className="hidden md:block text-white bg-[#3a4688] h-max px-8 py-2 rounded-full font-bold ml-auto"
               >
                 Cancel
               </button>
               <button
-                onClick={() => setIsFocused(false)}
-                className="md:hidden text-[#3a4688] h-max p-2"
+                onClick={closeModal}
+                className="md:hidden text-[#3a4688] h-max p-2 ml-auto"
               >
-                <IoClose size="25px" />
+                <IoClose size="30px" />
               </button>
             </div>
-            <div className="flex justify-center items-center px-4 h-64 text-white font-semibold">
-              Start typing to search...
-            </div>
+            {results && results.length > 0 ? (
+              <div className="h-64 md:h-80 text-white font-semibold overflow-scroll">
+                {results.map((result) => (
+                  <SearchCard key={result.id} {...result} />
+                ))}
+              </div>
+            ) : (
+              <div className="flex justify-center items-center h-64 md:h-80 text-white font-semibold">
+                {searchQuery === "" && "Start typing to search..."}
+                {results && results.length === 0 && "Movie Not Found"}
+                {isLoading && "Loading..."}
+              </div>
+            )}
           </div>
         </div>
       )}
