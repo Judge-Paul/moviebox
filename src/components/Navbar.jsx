@@ -8,6 +8,7 @@ import logo from "../assets/logo.svg";
 import menu from "../assets/menu.svg";
 import search from "../assets/search.svg";
 import SearchCard from "./SearchCard";
+import { toast } from "sonner";
 
 const { VITE_TMDB_API_KEY } = import.meta.env;
 const TMDB_BASE_URL = "https://api.themoviedb.org/3";
@@ -25,6 +26,7 @@ export default function Navbar() {
 
     if (!value) {
       setResults(null);
+      setIsLoading(false);
     }
   };
 
@@ -48,6 +50,9 @@ export default function Navbar() {
           setResults(response.data.results.slice(0, 6));
         } catch (error) {
           console.error(error);
+          toast.error(error.message);
+          toast.error("Failed! Try Again.");
+          closeModal();
         } finally {
           setIsLoading(false);
         }

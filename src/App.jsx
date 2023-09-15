@@ -29,7 +29,7 @@ const MovieWrapper = () => {
 export default function App() {
   return (
     <BrowserRouter>
-      <Toaster />
+      <Toaster position="top-right" richColors />
       <Routes>
         <Route path="/" element={<HomeWrapper />} />
         <Route path="/movies/:id" element={<MovieWrapper />} />
