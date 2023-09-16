@@ -57,14 +57,14 @@ export default function Movie() {
           <div>Error loading movie data.</div>
         ) : (
           <>
-            {/* Video player for the trailer */}
+            {video? 
             <video controls poster={movie.poster_path}>
               <source
                 src={`https://www.youtube.com/watch?v=${movie.youtube_trailer_key}`}
                 type="video/mp4"
               />
               Your browser does not support the video tag.
-            </video>
+            </video>: <img src={`https://image.tmdb.org/t/p/${movie.backdrop_path}`} alt="Movie Bg" className rounded-2xl />
             
             <h4 className="text-lg font-medium" data-testid="movie-title">{movie.title}</h4>
             <p className="text-lg font-medium" data-testid="movie-release-date" >{movie.release_date}</p>
@@ -87,15 +87,15 @@ export default function Movie() {
             <p className="mt-10 text-gray-600 font-medium" data-testid="movie-overview">
               {movie.overview}
             </p>
-            <p className="text-gray-600 font-medium mt-7">
+            {movie.director ?? <p className="text-gray-600 font-medium mt-7">
               Director: <span className="text-red-500">{movie.director}</span>
-            </p>
-            <p className="text-gray-600 font-medium mt-7">
+            </p>}
+            {movie.writers ?? <p className="text-gray-600 font-medium mt-7">
               Writers: <span className="text-red-500">{movie.writers}</span>
-            </p>
-            <p className="text-gray-600 font-medium mt-7">
+            </p>}
+            {movie.stars ?? <p className="text-gray-600 font-medium mt-7">
               Stars: <span className="text-red-500">{movie.stars}</span>
-            </p>
+            </p>}
             
             {/* More movie details */}
             <div className="mt-7 md:flex mb-10">
