@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { useLocation } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { FaSearch } from "react-icons/fa";
 import { ImSpinner8 } from "react-icons/im";
 import { IoClose } from "react-icons/io5";
@@ -65,10 +65,12 @@ export default function Navbar() {
   return (
     <>
       <nav
-        className={`fixed bg-black/50 backdrop-blur-sm w-full px-8 md:px-16 lg:px-24 py-4 flex space-x-3 justify-between 
-        ${location.pathname.includes("/movie") && "md:hidden"}`}
+        className={`bg-black/50 backdrop-blur-sm w-full px-8 md:px-16 lg:px-24 py-4 flex space-x-3 justify-between 
+        ${location.pathname.includes("/movie") ? "md:hidden" : "fixed" }`}
       >
-        <img src={logo} alt="Logo Icon" />
+        <Link to="/">
+          <img src={logo} alt="Logo Icon" />
+        </Link>
         <img
           src={search}
           alt="Search Input"
