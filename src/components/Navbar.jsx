@@ -61,7 +61,6 @@ export default function Navbar() {
     search();
   }, [searchQuery]);
 
-  console.log(results);
   return (
     <>
       <nav
@@ -123,7 +122,7 @@ export default function Navbar() {
               </button>
             </div>
             {results && results.length > 0 ? (
-              <div className="h-64 md:h-80 text-white font-semibold overflow-scroll">
+              <div className="h-80 text-white font-semibold overflow-scroll">
                 {results.map((result) => (
                   <SearchCard key={result.id} {...result} />
                 ))}
