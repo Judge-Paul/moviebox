@@ -65,7 +65,7 @@ export default function Navbar() {
     <>
       <nav
         className={`bg-black/50 backdrop-blur-sm w-full px-8 md:px-16 lg:px-24 py-4 flex space-x-3 justify-between 
-        ${location.pathname.includes("/movie") ? "md:hidden" : "fixed" }`}
+        ${location.pathname.includes("/movie") ? "md:hidden" : "fixed z-50" }`}
       >
         <Link to="/">
           <img src={logo} alt="Logo Icon" />
