@@ -12,6 +12,8 @@ export default function Movie() {
   const [error, setError] = useState(null);
   const { id } = useParams();
 
+toUTC = (date) => new Date(date + 'T00:00:00Z').toISOString();
+
   useEffect(() => {
     async function fetchMovieData() {
       try {
@@ -31,7 +33,54 @@ export default function Movie() {
 
   return (
     <main className="flex">
-      {/* Your sidebar and navigation links */}
+      <div className="hidden md:block fixed h-screen w-56 py-12 border border-gray-400 rounded-r-[50px]">
+        <img src="" alt="" />
+        <div className="mt-10 block">
+          <Link
+            to="/"
+            className="block text-center hover:bg-red-100 text-gray-500 text-md py-3 font-semibold"
+          >
+            Home
+          </Link>
+          <Link
+            to="/movie"
+            className="block text-center bg-red-200 border-r-[6px] border-red-500 text-gray-500 text-md py-3 font-semibold"
+          >
+            Movies
+          </Link>
+          <Link
+            to="/movie"
+            className="block text-center hover:bg-red-100 text-gray-500 text-md py-3 font-semibold"
+          >
+            Tv Series
+          </Link>
+          <Link
+            to="/movie"
+            className="block text-center hover:bg-red-100 text-gray-500 text-md py-3 font-semibold"
+          >
+            Upcoming
+          </Link>
+        </div>
+        <div className="border border-red-500 bg-red-50 mt-10 mx-5 pt-6 pb-4 px-3 rounded-2xl">
+          <h4 className="text-gray-600 text-md font-semibold">
+            Play movie quizes and earn free tickets
+          </h4>
+          <p className="mt-2.5 text-gray-500 text-xs">
+            50k people are playing now
+          </p>
+          <div className="mt-3 flex justify-center">
+            <button className="bg-red-200 hover:bg-red-300 text-sm text-red-600 rounded-full px-5 py-1.5 font-semibold">
+              Start Playing
+            </button>
+          </div>
+        </div>
+        <Link
+          to="/movie"
+          className="mt-4 block text-center hover:bg-red-100 text-gray-500 text-md py-3 font-semibold"
+        >
+          Log out
+        </Link>
+      </div>
       
       <div className="mt-10 mx-5 w-max md:ml-64 lg:ml-72 md:mr-14">
         {loading ? (
@@ -50,7 +99,7 @@ export default function Movie() {
             </video>: <img src={`https://image.tmdb.org/t/p/w500${movie.backdrop_path}`} alt={movie.title + "Background Image"} className rounded-2xl />}
             
             <h4 className="text-lg font-medium" data-testid="movie-title">{movie.title}</h4>
-            <p className="text-lg font-medium" data-testid="movie-release-date" >{movie.release_date}</p>
+            <p className="text-lg font-medium" data-testid="movie-release-date" >{toUTC(movie.release_date)}</p>
             <p className="text-lg font-medium">PG-13</p>
             <p className="text-lg font-medium" data-testid="movie-runtime" >{movie.runtime}</p>
             
