@@ -12,7 +12,7 @@ export default function Movie() {
   const [error, setError] = useState(null);
   const { id } = useParams();
 
-toUTC = (date) => new Date(date + 'T00:00:00Z').toISOString();
+const toUTC = (date) => new Date(date + 'T00:00:00Z').toISOString();
 
   useEffect(() => {
     async function fetchMovieData() {
