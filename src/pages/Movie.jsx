@@ -29,23 +29,6 @@ export default function Movie() {
     fetchMovieData();
   }, [id]);
 
-  function formatTime(minutes) {
-    if (minutes < 0 || !Number.isInteger(minutes)) {
-      throw new Error("Input minutes must be a non-negative integer");
-    }
-
-    const hours = Math.floor(minutes / 60);
-    const remainingMinutes = minutes % 60;
-
-    if (hours === 0) {
-      return `${remainingMinutes}m`;
-    } else if (hours === 1) {
-      return `1h ${remainingMinutes}m`;
-    } else {
-      return `${hours}h ${remainingMinutes}m`;
-    }
-  }
-
   return (
     <main className="flex">
       {/* Your sidebar and navigation links */}
@@ -90,21 +73,29 @@ export default function Movie() {
             {movie.director ?? <p className="text-gray-600 font-medium mt-7">
               Director: <span className="text-red-500">{movie.director}</span>
             </p>}
-            {movie.writers ?? <p className="text-gray-600 font-medium mt-7">
-              Writers: <span className="text-red-500">{movie.writers}</span>
-            </p>}
-            {movie.stars ?? <p className="text-gray-600 font-medium mt-7">
-              Stars: <span className="text-red-500">{movie.stars}</span>
-            </p>}
+{movie.director && (
+  <p className="text-gray-600 font-medium mt-7">
+    Director: <span className="text-red-500">{movie.director}</span>
+  </p>
+)}
+{movie.writers && (
+  <p className="text-gray-600 font-medium mt-7">
+    Writers: <span className="text-red-500">{movie.writers}</span>
+  </p>
+)}
+{movie.stars && (
+  <p className="text-gray-600 font-medium mt-7">
+    Stars: <span className="text-red-500">{movie.stars}</span>
+  </p>
+)}
             
-            {/* More movie details */}
             <div className="mt-7 md:flex mb-10">
-              <h4 className="px-4 py-3 bg-red-500 rounded-md text-white font-medium text-center md:w-1/2 lg:w-1/3">
+              {movie.top_rated && <h4 className="px-4 py-3 bg-red-500 rounded-md text-white font-medium text-center md:w-1/2 lg:w-1/3">
                 {movie.top_rated}
-              </h4>
-              <h4 className="px-3 py-3 rounded-md text-gray-800 font-medium border border-gray-400 text-center mt-3 md:mt-0 md:w-1/2 lg:w-2/3">
+              </h4>}
+              {movie.awards && <h4 className="px-3 py-3 rounded-md text-gray-800 font-medium border border-gray-400 text-center mt-3 md:mt-0 md:w-1/2 lg:w-2/3">
                 {movie.awards}
-              </h4>
+              </h4>}
             </div>
           </>
         )}
