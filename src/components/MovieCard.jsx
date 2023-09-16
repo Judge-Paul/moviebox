@@ -26,12 +26,12 @@ export default function MovieCard({
   };
 
   return (
-    <Link to={`/movies/${id}`} className="mt-10 hover:bg-gray-50 mx-3 relative" data-testid="movie-card">
+    <Link to={`/movies/${id}`} className="mt-10 hover:bg-gray-50 mx-3" data-testid="movie-card">
       <div className="absolute top-0 right-0 m-2 bg-transparent border-none outline-none cursor-pointer" style={{ zIndex: -1 }}>
         <div className="p-1 rounded-full bg-transparent w-10 h-10">
           <button
             onClick={handleLikeClick}
-            className={`w-full h-full bg-transparent border-none outline-none cursor-pointer ${isLiked ? 'text-pink-500' : 'text-gray-500'}`}
+            className={`w-full h-full bg-gray-200/50 border-none outline-none cursor-pointer ${isLiked ? 'text-pink-500' : 'text-gray-500'}`}
           >
             <FiHeart size={24} />
           </button>
