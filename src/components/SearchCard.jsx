@@ -6,7 +6,7 @@ import reactLogo from "../assets/react.svg";
 
 export default function SearchCard({ id, title, poster_path, overview }) {
   return (
-    <Link to={`/movies/${id}`} className="w-full">
+    <Link to={`/movies/${id}`} className="w-[23rem]">
       <div className="flex mb-3 hover:bg-blue-400">
         <img
           src={`http://images.tmdb.org/t/p/w92/original${poster_path}`}
