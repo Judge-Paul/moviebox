@@ -9,9 +9,9 @@ export default function SearchCard({ id, title, poster_path, overview }) {
     <Link to={`/movies/${id}`} className="w-full">
       <div className="flex mb-3 hover:bg-blue-400">
         <img
-          src={`http://images.tmdb.org/t/p/original${poster_path}`}
+          src={`http://images.tmdb.org/t/p/w92/original${poster_path}`}
           alt={title}
-          className="w-[130px] md:w-[180px] h-36 md:h-48 bg-gray-400"
+          className="w-[100px] md:w-[180px] h-36 md:h-48 bg-gray-400"
         />
         <div className="mx-5 mt-3 w-max">
           <h4 className="text-xl">{title || <Skeleton />}</h4>
