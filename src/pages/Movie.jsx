@@ -66,11 +66,10 @@ export default function Movie() {
               Your browser does not support the video tag.
             </video>
             
-            {/* Rest of your code for displaying movie details */}
-            <h4 className="text-lg font-medium">{movie.title}</h4>
-            <p className="text-lg font-medium">{movie.release_date.slice(0, 4)}</p>
+            <h4 className="text-lg font-medium" data-testid="movie-title">{movie.title}</h4>
+            <p className="text-lg font-medium" data-testid="movie-release-date" >{movie.release_date}</p>
             <p className="text-lg font-medium">PG-13</p>
-            <p className="text-lg font-medium">{formatTime(movie.runtime)}</p>
+            <p className="text-lg font-medium" data-testid="movie-runtime" >{movie.runtime}</p>
             
             {/* Genres */}
             <div className="lg:w-1/2 xl:w-1/3 flex lg:justify-between">
@@ -85,7 +84,7 @@ export default function Movie() {
             </div>
             
             {/* Additional movie information */}
-            <p className="mt-10 text-gray-600 font-medium">
+            <p className="mt-10 text-gray-600 font-medium" data-testid="movie-overview">
               {movie.overview}
             </p>
             <p className="text-gray-600 font-medium mt-7">
