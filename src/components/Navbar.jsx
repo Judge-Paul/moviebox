@@ -117,7 +117,7 @@ export default function Navbar() {
               </button>
               <button
                 onClick={closeModal}
-                className="md:hidden text-[#3a4688] h-max p-2 ml-auto"
+                className="md:hidden text-[#3a4688] h-[65%] p-2 ml-auto"
               >
                 <IoClose size="30px" />
               </button>
