@@ -64,7 +64,7 @@ export default function Movie() {
                 type="video/mp4"
               />
               Your browser does not support the video tag.
-            </video>: <img src={`https://image.tmdb.org/t/p/${movie.backdrop_path}`} alt="Movie Bg" className rounded-2xl />}
+            </video>: <img src={`https://image.tmdb.org/t/p${movie.backdrop_path}`} alt="Movie Bg" className rounded-2xl />}
             
             <h4 className="text-lg font-medium" data-testid="movie-title">{movie.title}</h4>
             <p className="text-lg font-medium" data-testid="movie-release-date" >{movie.release_date}</p>
